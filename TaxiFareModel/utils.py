@@ -1,4 +1,5 @@
 import numpy as np
+import time
 
 
 def haversine_vectorized(df,
@@ -25,6 +26,38 @@ def haversine_vectorized(df,
     c = 2 * np.arcsin(np.sqrt(a))
     return 6371 * c
 
+def minkowski_distance(df, p, 
+                         start_lat="pickup_latitude",
+                         start_lon="pickup_longitude",
+                         end_lat="dropoff_latitude",
+                         end_lon="dropoff_longitude"):
+    """
+        Minkowski Distance is actually the generic distance
+        to compute different distances
+    """
+    x1 = df[start_lon]
+    x2 = df[end_lon]
+    y1 = df[start_lat]
+    y2 = df[end_lat]
+    delta_x = x1 - x2
+    delta_y = y1 - y2
+    return ((abs(delta_x) ** p) + (abs(delta_y)) ** p) ** (1 / p)
 
 def compute_rmse(y_pred, y_true):
     return np.sqrt(((y_pred - y_true) ** 2).mean())
+
+
+# Decorators (from solution)
+def simple_time_tracker(method):
+    def timed(*args, **kw):
+        ts = time.time()
+        result = method(*args, **kw)
+        te = time.time()
+        if 'log_time' in kw:
+            name = kw.get('log_name', method.__name__.upper())
+            kw['log_time'][name] = int((te - ts))
+        else:
+            print(method.__name__, round(te - ts, 2))
+        return result
+
+    return timed

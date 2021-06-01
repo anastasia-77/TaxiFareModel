@@ -1,0 +1,15 @@
+artifact_uri: file:///home/khody/code/anastasia-77/TaxiFareModel/mlruns/1/1e7032118de2462e8852b6c90554598c/artifacts
+end_time: null
+entry_point_name: ''
+experiment_id: '1'
+lifecycle_stage: active
+name: ''
+run_id: 1e7032118de2462e8852b6c90554598c
+run_uuid: 1e7032118de2462e8852b6c90554598c
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1622557846142
+status: 1
+tags: []
+user_id: unknown
